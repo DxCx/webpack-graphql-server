@@ -1,0 +1,40 @@
+{
+  "name": "webpack-apollo-server",
+  "version": "0.0.1",
+  "description": "Starter kit for apollo server using webpack and typescript",
+  "main": "dist/main.js",
+  "scripts": {
+    "prebuild": "npm install",
+    "build": "webpack",
+    "start": "npm run build && node dist/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DxCx/webpack-apollo-server.git"
+  },
+  "keywords": [
+    "apollo",
+    "backend",
+    "apollo-server",
+    "typescript",
+    "webpack",
+    "graphql",
+    "graphiql",
+    "express"
+  ],
+  "author": "Hagai Cohen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DxCx/webpack-apollo-server/issues"
+  },
+  "homepage": "https://github.com/DxCx/webpack-apollo-server#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "ts-loader": "^0.8.2",
+    "tslint": "^3.13.0",
+    "tslint-loader": "^2.1.5",
+    "typescript": "^2.0.0",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.15.0"
+  }
+}
