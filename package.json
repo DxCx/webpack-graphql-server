@@ -28,7 +28,12 @@
     "url": "https://github.com/DxCx/webpack-apollo-server/issues"
   },
   "homepage": "https://github.com/DxCx/webpack-apollo-server#readme",
-  "dependencies": {},
+  "dependencies": {
+    "@types/express": "^4.0.31",
+    "apollo-server": "^0.2.5",
+    "express": "^4.14.0",
+    "graphql": "^0.6.2"
+  },
   "devDependencies": {
     "ts-loader": "^0.8.2",
     "tslint": "^3.13.0",

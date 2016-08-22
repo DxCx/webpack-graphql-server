@@ -1,7 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
 var fs = require('fs');
-var os = require('os');
 
 /* small hack to build map of node modules used for excluding from webpack */
 var nodeModules = {};
