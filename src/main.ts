@@ -2,14 +2,23 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import { apolloExpress, graphiqlExpress } from "apollo-server";
 import { Schema } from "./schema";
+import * as cors from "cors";
 
+// Either to export GraphiQL (Debug Interface) or not.
 const EXPORT_GRAPHIQL = process.env.NODE_ENV !== "production" || true;
+// Default port or given one.
 const PORT = process.env.PORT || 3000;
+// Enable cors (cross-origin HTTP request) or not.
+const ENABLE_CORS = process.env.NODE_ENV !== "production" || true;
 
 const GRAPHQL_ROUTE = "/graphql";
 const GRAPHIQL_ROUTE = "/graphiql";
 
 let app = express();
+if ( true === ENABLE_CORS ) {
+    app.use(GRAPHQL_ROUTE, cors());
+}
+
 app.use(GRAPHQL_ROUTE, bodyParser.json(), apolloExpress({
     schema: Schema,
 }));
