@@ -7,6 +7,7 @@ What does it include:
     1. exported schema as example for GraphQL Schema
     2. Working Apollo Server (webpack + tslint + tsloader)
     3. Typescript 2.0.0 => ES6
+    4. Dockerfile to make the apollo-server a container.
 
 Notes
 ----
@@ -36,6 +37,7 @@ Files explained:
     6. tslint.json             - configuration file for the linter
     7. typings.json            - typings needed for the server
     8. webpack.config.js       - configuration file of the compilation automation process for the library
+    9. Dockerfile			   - Dockerfile used to describe how to make a container out of apollo server
 
 Output files explained:
 ----
