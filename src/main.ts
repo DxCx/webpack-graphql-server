@@ -6,6 +6,7 @@ import * as cors from 'cors';
 import * as helmet from 'helmet';
 import * as morgan from 'morgan';
 import {persons, findPerson, addPerson} from './data-base/person-database';
+import * as session from 'express-session';
 
 // Default port or given one.
 export const GRAPHQL_ROUTE = "/graphql";
@@ -17,6 +18,7 @@ interface IMainOptions {
   env: string;
   port: number;
   verbose?: boolean;
+  sessionOpts?: any;
 }
 
 /* istanbul ignore next: no need to test verbose print */
@@ -35,15 +37,18 @@ class TestConnector {
 
 export function main(options: IMainOptions) {
   let app = express();
-  
+
   app.use(helmet());
-  
+
   app.use(morgan(options.env));
-  
+
   if (true === options.enableCors) {
     app.use(GRAPHQL_ROUTE, cors());
   }
-  
+  if ( options.sessionOpts ) {
+    app.use(session(options.sessionOpts));
+  }
+
   let testConnector = new TestConnector();
   app.use(GRAPHQL_ROUTE, bodyParser.json(), graphqlExpress({
     context: {
@@ -54,18 +59,18 @@ export function main(options: IMainOptions) {
     },
     schema: Schema,
   }));
-  
+
   if (true === options.enableGraphiql) {
     app.use(GRAPHIQL_ROUTE, graphiqlExpress({endpointURL: GRAPHQL_ROUTE}));
   }
-  
+
   return new Promise((resolve, reject) => {
     let server = app.listen(options.port, () => {
       /* istanbul ignore if: no need to test verbose print */
       if (options.verbose) {
         verbosePrint(options.port, options.enableGraphiql);
       }
-      
+
       resolve(server);
     }).on("error", (err: Error) => {
       reject(err);
@@ -76,20 +81,33 @@ export function main(options: IMainOptions) {
 /* istanbul ignore if: main scope */
 if (require.main === module) {
   const PORT = process.env.PORT || 3000;
-  
+
   // Either to export GraphiQL (Debug Interface) or not.
   const NODE_ENV = process.env.NODE_ENV !== "production" ? "dev" : "production";
-  
+
   const EXPORT_GRAPHIQL = NODE_ENV !== "production";
-  
+
   // Enable cors (cross-origin HTTP request) or not.
   const ENABLE_CORS = NODE_ENV !== "production";
-  
+
+  const SESSION_OPTS = {
+    // Age = 1 Hour.
+    cookie: { maxAge: 60 * 60 * 1000, secure: false },
+    resave: false,
+    saveUninitialized: false,
+    secret: "Sup3rH4rdP4$$w0rd",
+    rolling: true,
+  };
+  if ( "production" === NODE_ENV ) {
+    SESSION_OPTS.cookie.secure = true;
+  };
+
   main({
     enableCors: ENABLE_CORS,
     enableGraphiql: EXPORT_GRAPHIQL,
     env: NODE_ENV,
     port: PORT,
+    sessionOpts: SESSION_OPTS,
     verbose: true,
   });
 }
