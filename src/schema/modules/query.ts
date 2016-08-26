@@ -8,6 +8,7 @@ type Query {
     someType: SomeType
     getPerson(id: String!): PersonType
     persons: [PersonType]
+    topSecretString: String
 }
 `;
 
@@ -27,6 +28,13 @@ export const resolver = {
     },
     someType(root, args, ctx) {
       return {testFloat: 303.0303, testInt: 666};
+    },
+    topSecretString(root, args, ctx) {
+      if ( false === ctx.isAuthenticated() ) {
+        throw new Error("Permession denied");
+      }
+
+      return "it works, but only after login!";
     },
   },
 };
