@@ -6,6 +6,8 @@
   "scripts": {
     "prebuild": "npm install",
     "build": "webpack",
+    "test": "mocha-webpack",
+    "test:growl": "npm test -- --growl --watch",
     "start": "npm run build && node dist/main.js"
   },
   "repository": {
@@ -35,6 +37,7 @@
     "@types/hapi": "^13.0.33",
     "@types/helmet": "0.0.30",
     "@types/koa": "^2.0.31",
+    "@types/mocha": "^2.2.31",
     "@types/morgan": "^1.7.30",
     "apollo-server": "0.2.6",
     "body-parser": "^1.15.2",
@@ -46,6 +49,10 @@
     "morgan": "^1.7.0"
   },
   "devDependencies": {
+    "@types/chai": "^3.4.32",
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2",
+    "mocha-webpack": "^0.6.0",
     "ts-loader": "^0.8.2",
     "tslint": "^3.13.0",
     "tslint-loader": "^2.1.5",

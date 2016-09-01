@@ -1,0 +1,3 @@
+--colors
+--webpack-config webpack.config.test.js
+src/main.test.ts

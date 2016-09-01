@@ -30,9 +30,6 @@ var webpack_opts = {
 		loaders: [{ test: /\.ts$/, loaders: ['ts-loader'] }]
 	},
 	externals: [nodeExternals()],
-	plugins: [
-		new webpack.IgnorePlugin(/\.(css|less)$/),
-	],
 	tslint: {
 		emitErrors: true,
 		failOnHint: true
