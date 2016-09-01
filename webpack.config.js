@@ -6,10 +6,10 @@ var fs = require('fs');
 /* helper function to get into build directory */
 var distPath = function(name) {
 	if ( undefined === name ) {
-		return path.join(__dirname, 'dist');
+		return path.join('dist');
 	}
 
-	return path.join(__dirname, 'dist', name);
+	return path.join('dist', name);
 }
 
 var webpack_opts = {
@@ -20,11 +20,14 @@ var webpack_opts = {
 		libraryTarget: "commonjs2"
 	},
 	resolve: {
-		extensions: ['', '.ts', '.js']
+		extensions: ['', '.ts', '.js'],
+		modules: [
+			'node_modules'
+		]
 	},
 	module: {
 		preLoaders: [{ test: /\.ts$/, loader: 'tslint' }],
-		loaders: [{ test: /\.ts$/, loader: 'ts-loader' }]
+		loaders: [{ test: /\.ts$/, loaders: ['ts-loader'] }]
 	},
 	externals: [nodeExternals()],
 	plugins: [
