@@ -1,14 +1,7 @@
+var nodeExternals = require('webpack-node-externals');
 var webpack = require('webpack');
 var path = require('path');
 var fs = require('fs');
-
-/* small hack to build map of node modules used for excluding from webpack */
-var nodeModules = {};
-fs.readdirSync('node_modules').filter(function (x) {
-	return ['.bin'].indexOf(x) === -1;
-}).forEach(function (mod) {
-	nodeModules[mod] = 'commonjs ' + mod;
-});
 
 /* helper function to get into build directory */
 var distPath = function(name) {
@@ -33,7 +26,7 @@ var webpack_opts = {
 		preLoaders: [{ test: /\.ts$/, loader: 'tslint' }],
 		loaders: [{ test: /\.ts$/, loader: 'ts-loader' }]
 	},
-	externals: nodeModules,
+	externals: [nodeExternals()],
 	plugins: [
 		new webpack.IgnorePlugin(/\.(css|less)$/),
 	],
