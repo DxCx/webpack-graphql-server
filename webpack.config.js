@@ -22,7 +22,8 @@ var webpack_opts = {
 	resolve: {
 		extensions: ['', '.ts', '.js'],
 		modules: [
-			'node_modules'
+			'node_modules',
+			'src',
 		]
 	},
 	module: {

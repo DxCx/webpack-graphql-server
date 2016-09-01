@@ -1,3 +1,4 @@
 --colors
 --webpack-config webpack.config.test.js
+--reporter mocha-istanbul-spec
 src/main.test.ts
