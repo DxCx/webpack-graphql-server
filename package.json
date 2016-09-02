@@ -60,7 +60,7 @@
     "tslint-loader": "^2.1.5",
     "typescript": "^2.0.0",
     "webpack": "^2.1.0-beta.21",
-    "webpack-istanbul-plugin": "0.0.1",
+    "webpack-istanbul-plugin": "0.0.2",
     "webpack-node-externals": "^1.3.3"
   }
 }
