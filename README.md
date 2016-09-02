@@ -32,18 +32,19 @@ How to run it:
 
 Files explained:
 ----
-    1. src                     - directory is used for typescript code that is part of the project
-        1a. modules/main.ts    - Main server file. (Starting Apollo server)
-        1b. modules/Schema.ts  - Basic Schema to test Apollo server is functional
-        1c. modules/main.test.ts - Main for tests runner.
-    3. package.json            - file is used to describe the library
-    4. tsconfig.json           - configuration file for the library compilation
-    6. tslint.json             - configuration file for the linter
-    7. typings.json            - typings needed for the server
-    8. webpack.config.js       - configuration file of the compilation automation process for the library
-    9. webpack.config.test.js  - configuration file of the compilation when testing
-    10. Dockerfile             - Dockerfile used to describe how to make a container out of apollo server
-    11. mocha-webpack.opts     - Options file for mocha-webpack
+    1. src                         - directory is used for typescript code that is part of the project
+        1a. modules/main.ts        - Main server file. (Starting Apollo server)
+        1b. modules/schema.ts      - Basic Schema to test Apollo server is functional
+        1c. modules/schema.spec.ts - Basic test for schema.
+        1c. modules/main.test.ts   - Main for tests runner.
+    3. package.json                - file is used to describe the library
+    4. tsconfig.json               - configuration file for the library compilation
+    6. tslint.json                 - configuration file for the linter
+    7. typings.json                - typings needed for the server
+    8. webpack.config.js           - configuration file of the compilation automation process for the library
+    9. webpack.config.test.js      - configuration file of the compilation when testing
+    10. Dockerfile                 - Dockerfile used to describe how to make a container out of apollo server
+    11. mocha-webpack.opts         - Options file for mocha-webpack
 
 Output files explained:
 ----
