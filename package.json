@@ -7,7 +7,8 @@
     "prebuild": "npm install",
     "build": "webpack",
     "test": "mocha-webpack",
-    "test:growl": "npm test -- --growl --watch",
+    "test:watch": "npm test -- --watch",
+    "test:growl": "npm run test:watch -- --growl",
     "start": "npm run build && node dist/main.js"
   },
   "repository": {

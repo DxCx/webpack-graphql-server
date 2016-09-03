@@ -22,7 +22,8 @@ Useful commands:
     npm run build      - build the library files
     npm start          - Start the server
     npm test           - run tests once
-    npm run test:growl - run tests in watchmode with growl notification (Useful for development)
+    npm run test:watch - run tests in watchmode (Useful for development)
+    npm run test:growl - run tests in watchmode with growl notification (even more useful for development)
 
 How to run it:
 ----
