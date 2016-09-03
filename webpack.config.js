@@ -1,3 +1,4 @@
+var failPlugin = require('webpack-fail-plugin');
 var nodeExternals = require('webpack-node-externals');
 var webpack = require('webpack');
 var path = require('path');
@@ -26,9 +27,12 @@ var webpack_opts = {
 			'src',
 		]
 	},
+	plugins: [
+		failPlugin,
+	],
 	module: {
 		preLoaders: [{ test: /\.ts$/, loader: 'tslint' }],
-		loaders: [{ test: /\.ts$/, loaders: ['ts-loader'] }]
+		loaders: [{ test: /\.ts$/, loaders: ['awesome-typescript-loader'] }]
 	},
 	externals: [nodeExternals()],
 	tslint: {

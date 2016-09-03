@@ -1,3 +1,4 @@
+var failPlugin = require('webpack-fail-plugin');
 var nodeExternals = require('webpack-node-externals');
 var path = require('path');
 var IstanbulPlugin = require('webpack-istanbul-plugin');
@@ -11,9 +12,10 @@ module.exports = {
 			test: /\.ts$/,
 			loaders: ['tslint']
 		}],
-		loaders: [{ test: /\.ts$/, loaders: ['ts-loader'] }],
+		loaders: [{ test: /\.ts$/, loaders: ['awesome-typescript-loader?inlineSourceMap=true&sourceMap=false'] }],
 	},
 	plugins: [
+		failPlugin,
 		new IstanbulPlugin({
 			test: /\.ts$/,
 			include: [
@@ -29,14 +31,6 @@ module.exports = {
 	tslint: {
 		emitErrors: true,
 		failOnHint: false,
-	},
-	ts: {
-		compiler: 'typescript',
-		configFileName: 'tsconfig.json',
-		compilerOptions: {
-			inlineSourceMap: true,
-			sourceMap: false,
-		},
 	},
 	resolve: {
 		extensions: ['', '.ts', '.js'],
