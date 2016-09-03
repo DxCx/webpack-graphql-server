@@ -4,16 +4,24 @@ import {
 import { makeExecutableSchema, addMockFunctionsToSchema } from "graphql-tools";
 
 const typeDefs: Array<string> = [`
+# Type which should have values mocked
 type MockedType {
-    mockedString: String
+    mockedFirstName: String
     mockedInt: Int
 }
 `, `
+type SomeType {
+    testInt: Int
+    testFloat: Float
+}
+`, `
+# Root Query
 type Query {
     testString: String
     testStringConnector: String
     rootMockedString: String
     mockedObject: MockedType
+    someType: SomeType
 }
 `, `
 schema {
@@ -28,6 +36,9 @@ const resolvers = {
         },
         testStringConnector(root, args, ctx) {
             return ctx.connectors.testConnector.testString;
+        },
+        someType(root, args, ctx) {
+            return { testFloat: 303.0303, testInt: 666 };
         },
     },
 };
@@ -55,7 +66,7 @@ const Schema: GraphQLSchema = makeExecutableSchema({
 });
 addMockFunctionsToSchema({
     mocks: {},
-    preserveResolvers: true,
+    preserveResolvers: false, // TODO: Should be True for partial Mock/Resolve.
     schema: Schema,
 });
 export { Schema };
