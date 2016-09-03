@@ -26,6 +26,7 @@ function main() {
     }
 
     app.use(GRAPHQL_ROUTE, bodyParser.json(), apolloExpress({
+        context: {},
         schema: Schema,
     }));
     if ( true === EXPORT_GRAPHIQL ) {
