@@ -66,7 +66,8 @@ const Schema: GraphQLSchema = makeExecutableSchema({
 });
 addMockFunctionsToSchema({
     mocks: {},
-    preserveResolvers: false, // TODO: Should be True for partial Mock/Resolve.
+    preserveResolvers: true,
     schema: Schema,
 });
+
 export { Schema };
