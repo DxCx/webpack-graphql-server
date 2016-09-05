@@ -1,5 +1,7 @@
 node_modules/
+html-report/
 dist/
+.tmp/
 *.d.ts
 *.log
 *.tgz

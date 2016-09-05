@@ -1,22 +1,16 @@
+var failPlugin = require('webpack-fail-plugin');
+var nodeExternals = require('webpack-node-externals');
 var webpack = require('webpack');
 var path = require('path');
 var fs = require('fs');
 
-/* small hack to build map of node modules used for excluding from webpack */
-var nodeModules = {};
-fs.readdirSync('node_modules').filter(function (x) {
-	return ['.bin'].indexOf(x) === -1;
-}).forEach(function (mod) {
-	nodeModules[mod] = 'commonjs ' + mod;
-});
-
 /* helper function to get into build directory */
 var distPath = function(name) {
 	if ( undefined === name ) {
-		return path.join(__dirname, 'dist');
+		return path.join('dist');
 	}
 
-	return path.join(__dirname, 'dist', name);
+	return path.join('dist', name);
 }
 
 var webpack_opts = {
@@ -27,16 +21,20 @@ var webpack_opts = {
 		libraryTarget: "commonjs2"
 	},
 	resolve: {
-		extensions: ['', '.ts', '.js']
+		extensions: ['', '.ts', '.js'],
+		modules: [
+			'node_modules',
+			'src',
+		]
 	},
+	plugins: [
+		failPlugin,
+	],
 	module: {
 		preLoaders: [{ test: /\.ts$/, loader: 'tslint' }],
-		loaders: [{ test: /\.ts$/, loader: 'ts-loader' }]
+		loaders: [{ test: /\.ts$/, loaders: ['awesome-typescript-loader'] }]
 	},
-	externals: nodeModules,
-	plugins: [
-		new webpack.IgnorePlugin(/\.(css|less)$/),
-	],
+	externals: [nodeExternals()],
 	tslint: {
 		emitErrors: true,
 		failOnHint: true
