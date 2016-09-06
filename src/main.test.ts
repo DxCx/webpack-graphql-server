@@ -5,9 +5,6 @@ import "mocha";
 interface IWebpackRequire {
     context(file: string, flag?: boolean, exp?: RegExp): any;
 }
-// const testsContext = (<any> require as IWebpackRequire).context(".", true, /.+\.spec\.ts$/);
-//
-// testsContext.keys().forEach(testsContext);
 
 // make sure that all .ts files will be processed by webpack
 const codeContext = (<any> require as IWebpackRequire).context(".", true, /.+\.ts$/);
