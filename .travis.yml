@@ -1,9 +1,10 @@
-anguage: node_js
+language: node_js
 node_js:
   - "6.2"
   - "6.4"
   - "6.5"
 install:
+  - npm config set spin=false
   - npm install -g coveralls
   - npm install
 env:
