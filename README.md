@@ -2,6 +2,8 @@
 
 Starter kit for apollo server using webpack and typescript
 
+[![Build Status](https://travis-ci.org/DxCx/webpack-apollo-server.svg?branch=graphql-tools)](https://travis-ci.org/DxCx/webpack-apollo-server) [![Coverage Status](https://coveralls.io/repos/github/DxCx/webpack-apollo-server/badge.svg?branch=graphql-tools)](https://coveralls.io/github/DxCx/webpack-apollo-server?branch=graphql-tools)
+
 What does it include:
 ----
     1. exported schema as example for GraphQL Schema
