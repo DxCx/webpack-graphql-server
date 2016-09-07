@@ -40,12 +40,14 @@ describe("Schema", () => {
         let testQuery = `{
             someType {
                 testFloat,
-                testInt
+                testInt,
+                fixedString,
             }
         }`;
 
         let expectedResponse = {
             someType: {
+                fixedString: "fixed.",
                 testFloat: 303.0303,
                 testInt: 666,
             },
