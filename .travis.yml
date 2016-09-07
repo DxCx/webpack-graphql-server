@@ -8,10 +8,10 @@ install:
   - npm install -g coveralls
   - npm install
 env:
-  - ISTANBUL_REPORTERS=lcov
+  - ISTANBUL_REPORTERS=lcov,text-summary
 script:
   - npm test
-  - coveralls < ./coverage/lcov.info || true # if coveralls doesn't have it covered
+  - coveralls < ./lcov.info || true # if coveralls doesn't have it covered
 
 # Allow Travis tests to run in containers.
 sudo: false
