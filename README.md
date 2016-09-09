@@ -11,6 +11,7 @@ What does it include:
     3. Typescript 2.0.0 => ES6
     4. Dockerfile to make the apollo-server a container.
     5. unit testing (mocha-webpack+chai) + coverage report (mocha-istanbul-spec+istanbul).
+    6. working with graphql-tools
 
 Notes
 ----
@@ -36,10 +37,13 @@ How to run it:
 Files explained:
 ----
     1. src                         - directory is used for typescript code that is part of the project
-        1a. modules/main.ts        - Main server file. (Starting Apollo server)
-        1b. modules/schema.ts      - Basic Schema to test Apollo server is functional
-        1c. modules/schema.spec.ts - Basic test for schema.
-        1c. modules/main.test.ts   - Main for tests runner.
+        1a. main.ts                - Main server file. (Starting Apollo server)
+        1b. main.spec.ts           - Tests file for main
+        1c. schema                 - Module used to build schema
+            - index.ts             - simple logic to merge all modules into a schema using graphql-tools
+            - modules/             - directory for modules to be used with graphql-tools
+        1c. schema.spec.ts         - Basic test for schema.
+        1c. main.test.ts           - Main for tests runner.
     3. package.json                - file is used to describe the library
     4. tsconfig.json               - configuration file for the library compilation
     6. tslint.json                 - configuration file for the linter
