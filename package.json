@@ -1,6 +1,6 @@
 {
   "name": "webpack-apollo-server",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Starter kit for apollo server using webpack and typescript",
   "main": "dist/main.js",
   "scripts": {
