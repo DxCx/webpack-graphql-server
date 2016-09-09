@@ -45,6 +45,7 @@
     "cors": "^2.7.1",
     "express": "^4.14.0",
     "graphql": "0.7.0",
+    "graphql-tools": "0.6.6",
     "graphql-typings": "0.0.1-beta-2",
     "helmet": "^2.1.2",
     "morgan": "^1.7.0"
