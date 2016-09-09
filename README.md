@@ -1,6 +1,6 @@
 # webpack-apollo-server
 
-[![Build Status](https://travis-ci.org/DxCx/webpack-apollo-server.svg?branch=master)](https://travis-ci.org/DxCx/webpack-apollo-server) [![Coverage Status](https://coveralls.io/repos/github/DxCx/webpack-apollo-server/badge.svg?branch=master)](https://coveralls.io/github/DxCx/webpack-apollo-server?branch=master)
+[![npm version](https://badge.fury.io/js/webpack-apollo-server.svg)](https://badge.fury.io/js/webpack-apollo-server) [![Build Status](https://travis-ci.org/DxCx/webpack-apollo-server.svg?branch=master)](https://travis-ci.org/DxCx/webpack-apollo-server) [![Coverage Status](https://coveralls.io/repos/github/DxCx/webpack-apollo-server/badge.svg?branch=master)](https://coveralls.io/github/DxCx/webpack-apollo-server?branch=master)
 
 Starter kit for apollo server using webpack and typescript
 
