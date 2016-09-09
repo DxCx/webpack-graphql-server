@@ -6,10 +6,12 @@
   "scripts": {
     "prebuild": "npm install",
     "build": "webpack",
+    "pretest": "npm run build",
     "test": "mocha-webpack",
     "test:watch": "npm test -- --watch",
     "test:growl": "npm run test:watch -- --growl",
     "start": "npm run build && node dist/main.js",
+    "preupver": "npm test",
     "upver": "standard-version"
   },
   "repository": {
