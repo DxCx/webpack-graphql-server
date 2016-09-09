@@ -12,6 +12,7 @@ What does it include:
     4. Dockerfile to make the apollo-server a container.
     5. unit testing (mocha-webpack+chai) + coverage report (mocha-istanbul-spec+istanbul).
     6. working with graphql-tools
+    7. standard-version for auto SemVer.
 
 Notes
 ----
@@ -27,6 +28,7 @@ Useful commands:
     npm test           - run tests once
     npm run test:watch - run tests in watchmode (Useful for development)
     npm run test:growl - run tests in watchmode with growl notification (even more useful for development)
+    npm run upver      - runs standard-version to update the server version.
 
 How to run it:
 ----
