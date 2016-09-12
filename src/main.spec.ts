@@ -1,12 +1,9 @@
-import { expect, should } from "chai";
 import { GRAPHQL_ROUTE, GRAPHIQL_ROUTE, main } from "./main";
 import { get as httpGet, Server } from "http";
+import 'jest';
 
 const ERRNO_KEY = "errno";
 const PORT: number = 8080;
-
-// Enable Chai's should
-should();
 
 function getFromServer(uri) {
     return new Promise((resolve, reject) => {
@@ -50,7 +47,7 @@ describe("main", () => {
         }).then((server: Server) => {
             return getFromServer(GRAPHQL_ROUTE).then((res: any) => {
                 server.close();
-                expect(res.statusCode).to.equal(405);
+                expect(res.statusCode).toBe(405);
             });
         });
     });
@@ -64,7 +61,7 @@ describe("main", () => {
         }).then((server: Server) => {
             return getFromServer(GRAPHQL_ROUTE).then((res: any) => {
                 server.close();
-                expect(res.statusCode).to.equal(405);
+                expect(res.statusCode).toBe(405);
             });
         });
     });
@@ -78,7 +75,7 @@ describe("main", () => {
         }).then((server: Server) => {
             return getFromServer(GRAPHIQL_ROUTE).then((res: any) => {
                 server.close();
-                expect(res.statusCode).to.equal(200);
+                expect(res.statusCode).toBe(200);
             });
         });
     });
@@ -92,7 +89,7 @@ describe("main", () => {
         }).then((server: Server) => {
             return getFromServer(GRAPHIQL_ROUTE).then((res: any) => {
                 server.close();
-                expect(res.statusCode).to.equal(404);
+                expect(res.statusCode).toBe(404);
             });
         });
     });
@@ -115,7 +112,7 @@ describe("main", () => {
                 throw new Error("Was able to listen twice!");
             }, (err: Error) => {
                 server.close();
-                expect(err[ERRNO_KEY]).to.equal("EADDRINUSE");
+                expect(err[ERRNO_KEY]).toBe("EADDRINUSE");
             });
         });
     });

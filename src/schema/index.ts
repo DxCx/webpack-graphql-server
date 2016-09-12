@@ -3,10 +3,12 @@ import {
 } from "graphql";
 import { makeExecutableSchema, addMockFunctionsToSchema } from "graphql-tools";
 
-const moduleFiles = (<any> require).context("./modules/", true, /\.ts/);
-const modules = moduleFiles.keys().map((moduleName) => {
-    return moduleFiles(moduleName);
-});
+/* tslint:disable:no-var-requires */
+const modules = [
+    require("./modules/mocked-type"),
+    require("./modules/query"),
+    require("./modules/some-type"),
+];
 
 const mainDefs = [`
     schema {

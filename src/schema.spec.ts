@@ -1,24 +1,21 @@
-import { expect, should } from "chai";
 import { Schema } from "./schema";
 import { graphql } from "graphql";
-
-// Enable Chai's should
-should();
+import 'jest';
 
 function assertNoError(res) {
     if ( res.errors ) {
         console.error(res.errors);
-        expect(res.errors).to.be.an("undefined");
+        expect(typeof res.errors).toBe("undefined");
     }
 }
 
 describe("Schema", () => {
     it("should export valid schema", () => {
         let query = Schema.getQueryType();
-        expect(query).to.be.a("object");
+        expect(typeof query).toBe("object");
 
         let fields: any = query.getFields();
-        expect(fields).to.be.a("object");
+        expect(typeof fields).toBe("object");
     });
 
     it("should resolve testString correctly", () => {
@@ -32,7 +29,7 @@ describe("Schema", () => {
 
         return graphql(Schema, testQuery, undefined, {}).then((res) => {
             assertNoError(res);
-            expect(res.data).to.deep.equal(expectedResponse);
+            expect(res.data).toMatchSnapshot();
         });
     });
 
@@ -45,17 +42,9 @@ describe("Schema", () => {
             }
         }`;
 
-        let expectedResponse = {
-            someType: {
-                fixedString: "fixed.",
-                testFloat: 303.0303,
-                testInt: 666,
-            },
-        };
-
         return graphql(Schema, testQuery, undefined, {}).then((res) => {
             assertNoError(res);
-            expect(res.data).to.deep.equal(expectedResponse);
+            expect(res.data).toMatchSnapshot();
         });
     });
 
@@ -64,13 +53,9 @@ describe("Schema", () => {
             testStringConnector
         }`;
 
-        let expectedResponse = {
-            testStringConnector: "it works from connector as well!",
-        };
-
         return graphql(Schema, testQuery, undefined, {}).then((res) => {
             assertNoError(res);
-            expect(res.data).to.deep.equal(expectedResponse);
+            expect(res.data).toMatchSnapshot();
         });
     });
 
@@ -86,8 +71,10 @@ describe("Schema", () => {
             let data = res.data;
 
             assertNoError(res);
-            expect(data.mockedObject.mockedFirstName).to.be.equal("Hello World");
-            expect(data.mockedObject.mockedInt).to.be.within(-1000, 1000);
+            expect(data.mockedObject.mockedInt).toBeGreaterThan(-1000);
+            expect(data.mockedObject.mockedInt).toBeLessThan(1000);
+
+            expect(data.mockedObject.mockedFirstName).toMatchSnapshot();
         });
     });
 });
