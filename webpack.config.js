@@ -29,7 +29,7 @@ var webpack_opts = {
 	plugins: [],
 	module: {
 		preLoaders: [{ test: /\.ts$/, loader: 'tslint' }],
-		loaders: [{ test: /\.ts$/, loaders: ['awesome-typescript-loader'] }]
+		loaders: [{ test: /\.ts$/, loaders: ['babel-loader', 'awesome-typescript-loader'] }]
 	},
 	externals: [nodeExternals()],
 	tslint: {
