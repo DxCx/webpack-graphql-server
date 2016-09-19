@@ -1,5 +1,6 @@
 language: node_js
 node_js:
+  - "4.4"
   - "6.2"
   - "6.4"
   - "6.5"
@@ -7,10 +8,10 @@ install:
   - npm config set spin=false
   - npm install -g coveralls
   - npm install
-env:
-  - ISTANBUL_REPORTERS=lcov,text-summary
+
 script:
   - npm test
+  - npm run coverage
   - coveralls < ./lcov.info || true # if coveralls doesn't have it covered
 
 # Allow Travis tests to run in containers.

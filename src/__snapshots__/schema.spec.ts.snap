@@ -1,0 +1,23 @@
+exports[`Schema should resolve mockedObject  correctly 1`] = `"Hello World"`;
+
+exports[`Schema should resolve someType correctly 1`] = `
+Object {
+  "someType": Object {
+    "fixedString": "fixed.",
+    "testFloat": 303.0303,
+    "testInt": 666
+  }
+}
+`;
+
+exports[`Schema should resolve testString correctly 1`] = `
+Object {
+  "testString": "it Works!"
+}
+`;
+
+exports[`Schema should resolve testStringConnector correctly 1`] = `
+Object {
+  "testStringConnector": "it works from connector as well!"
+}
+`;
