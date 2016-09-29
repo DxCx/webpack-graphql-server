@@ -18,7 +18,6 @@ function getFromServer(uri) {
 describe("main", () => {
     it("should be able to Initialize a server (production)", () => {
         return main({
-            enableCors: false,
             enableGraphiql: false,
             env: "production",
             port: PORT,
@@ -29,7 +28,6 @@ describe("main", () => {
 
     it("should be able to Initialize a server (development)", () => {
         return main({
-            enableCors: true,
             enableGraphiql: true,
             env: "dev",
             port: PORT,
@@ -38,37 +36,34 @@ describe("main", () => {
         });
     });
 
-    it("should have a working graphql (developemnt)", () => {
+    it("should not have a working graphql http (developemnt)", () => {
         return main({
-            enableCors: true,
             enableGraphiql: true,
             env: "dev",
             port: PORT,
         }).then((server: Server) => {
             return getFromServer(GRAPHQL_ROUTE).then((res: any) => {
                 server.close();
-                expect(res.statusCode).toBe(405);
+                expect(res.statusCode).toBe(400);
             });
         });
     });
 
-    it("should have a working graphql (production)", () => {
+    it("should not have a working graphql http (production)", () => {
         return main({
-            enableCors: false,
             enableGraphiql: false,
             env: "production",
             port: PORT,
         }).then((server: Server) => {
             return getFromServer(GRAPHQL_ROUTE).then((res: any) => {
                 server.close();
-                expect(res.statusCode).toBe(405);
+                expect(res.statusCode).toBe(400);
             });
         });
     });
 
     it("should have a working graphiql (developemnt)", () => {
         return main({
-            enableCors: true,
             enableGraphiql: true,
             env: "dev",
             port: PORT,
@@ -82,7 +77,6 @@ describe("main", () => {
 
     it("should have block graphiql (production)", () => {
         return main({
-            enableCors: false,
             enableGraphiql: false,
             env: "production",
             port: PORT,
@@ -96,13 +90,11 @@ describe("main", () => {
 
     it("should reject twice on same port", () => {
         return main({
-            enableCors: false,
             enableGraphiql: false,
             env: "production",
             port: PORT,
         }).then((server: Server) => {
             return main({
-                enableCors: false,
                 enableGraphiql: false,
                 env: "production",
                 port: PORT,

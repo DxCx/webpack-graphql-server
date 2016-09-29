@@ -1,18 +1,20 @@
 import {
     GraphQLSchema,
-} from "graphql";
-import { makeExecutableSchema, addMockFunctionsToSchema } from "graphql-tools";
+} from "graphql-rxjs";
+import { makeExecutableSchema, addMockFunctionsToSchema } from "graphql-tools-rxjs";
 
 /* tslint:disable:no-var-requires */
 const modules = [
     require("./modules/mocked-type"),
     require("./modules/query"),
     require("./modules/some-type"),
+    require("./modules/subscription"),
 ];
 
 const mainDefs = [`
     schema {
         query: Query,
+        subscription: Subscription,
     }
 `,
 ];

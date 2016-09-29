@@ -1,5 +1,6 @@
 import { Schema } from "./schema";
-import { graphql } from "graphql";
+import { executeReactive, graphql, graphqlReactive } from "graphql-rxjs";
+import { Observable } from 'rxjs';
 import 'jest';
 
 function assertNoError(res) {
@@ -27,7 +28,7 @@ describe("Schema", () => {
             testString: "it Works!",
         };
 
-        return graphql(Schema, testQuery, undefined, {}).then((res) => {
+        return graphqlReactive(Schema, testQuery, undefined, {}).toPromise().then((res) => {
             assertNoError(res);
             expect(res.data).toMatchSnapshot();
         });

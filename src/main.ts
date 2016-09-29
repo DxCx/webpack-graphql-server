@@ -1,17 +1,20 @@
 import * as express from "express";
-import * as bodyParser from "body-parser";
-import { apolloExpress, graphiqlExpress } from "apollo-server";
+import { wsApollo, graphiqlExpress } from "apollo-server-rxjs";
 import { Schema } from "./schema";
-import * as cors from "cors";
 import * as helmet from "helmet";
 import * as morgan from "morgan";
+
+import * as url from "url";
+import { Server as WsServer } from "ws";
+import { Observable } from "rxjs";
 
 // Default port or given one.
 export const GRAPHQL_ROUTE = "/graphql";
 export const GRAPHIQL_ROUTE = "/graphiql";
 
+const clockSource = Observable.interval(1000).map(() => new Date()).publishReplay(1).refCount();
+
 interface IMainOptions {
-    enableCors: boolean;
     enableGraphiql: boolean;
     env: string;
     port: number;
@@ -30,17 +33,16 @@ export function main(options: IMainOptions) {
     let app = express();
     app.use(helmet());
     app.use(morgan(options.env));
-    if ( true === options.enableCors ) {
-        app.use(GRAPHQL_ROUTE, cors());
-    }
 
-    app.use(GRAPHQL_ROUTE, bodyParser.json(), apolloExpress({
-        context: {},
-        schema: Schema,
-    }));
+    app.use(GRAPHQL_ROUTE, (req, res) => {
+        res.writeHead(400);
+        res.write("this is websocket endpoint");
+        res.end();
+    });
+
     if ( true === options.enableGraphiql ) {
         app.use(GRAPHIQL_ROUTE, graphiqlExpress({
-            endpointURL: GRAPHQL_ROUTE,
+            endpointURL: `ws://localhost:${options.port}${GRAPHQL_ROUTE}`,
         }));
     }
 
@@ -55,6 +57,27 @@ export function main(options: IMainOptions) {
         }).on("error", (err: Error) => {
             reject(err);
         });
+    }).then((server) => {
+        let wss = new WsServer({ server: <any> server });
+
+        wss.on("connection", wsApollo((ws) => {
+            const location = url.parse(ws.upgradeReq.url, true);
+
+            // Multiplex ws connections by path.
+            switch ( location.pathname ) {
+               case GRAPHQL_ROUTE:
+                   return {
+                       context: {
+                           clockSource,
+                       },
+                       schema: Schema,
+                   };
+               default:
+                   ws.terminate();
+                   return undefined;
+            }
+        }));
+        return server;
     });
 }
 
@@ -64,11 +87,8 @@ if (require.main === module) {
     // Either to export GraphiQL (Debug Interface) or not.
     const NODE_ENV = process.env.NODE_ENV !== "production" ? "dev" : "production";
     const EXPORT_GRAPHIQL = NODE_ENV !== "production";
-    // Enable cors (cross-origin HTTP request) or not.
-    const ENABLE_CORS = NODE_ENV !== "production";
 
     main({
-        enableCors: ENABLE_CORS,
         enableGraphiql: EXPORT_GRAPHIQL,
         env: NODE_ENV,
         port: PORT,
