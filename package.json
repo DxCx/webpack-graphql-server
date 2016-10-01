@@ -42,7 +42,7 @@
     "@types/helmet": "0.0.30",
     "@types/koa": "^2.0.31",
     "@types/morgan": "^1.7.30",
-    "apollo-server-rxjs": "^0.3.2-patch.1",
+    "apollo-server-rxjs": "^0.3.2-patch.2",
     "express": "^4.14.0",
     "graphql-rxjs": "^0.7.0-patch.2",
     "graphql-tools-rxjs": "^0.7.2",
