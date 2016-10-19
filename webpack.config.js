@@ -20,26 +20,31 @@ var webpack_opts = {
 		libraryTarget: "commonjs2"
 	},
 	resolve: {
-		extensions: ['', '.ts', '.js'],
+		extensions: ['.ts', '.js'],
 		modules: [
 			'node_modules',
 			'src',
 		]
 	},
-	plugins: [],
+	plugins: [
+		new webpack.LoaderOptionsPlugin({
+			options: {
+				test: /\.ts$/,
+				ts: {
+					compiler: 'typescript',
+					configFileName: 'tsconfig.json'
+				},
+				tslint: {
+					emitErrors: true,
+					failOnHint: true
+				}
+			}
+		})
+	],
 	module: {
-		preLoaders: [{ test: /\.ts$/, loader: 'tslint' }],
 		loaders: [{ test: /\.ts$/, loaders: ['babel-loader', 'awesome-typescript-loader'] }]
 	},
-	externals: [nodeExternals()],
-	tslint: {
-		emitErrors: true,
-		failOnHint: true
-	},
-	ts: {
-		compiler: 'typescript',
-		configFileName: 'tsconfig.json'
-	}
+	externals: [nodeExternals()]
 }
 
 module.exports = webpack_opts;
