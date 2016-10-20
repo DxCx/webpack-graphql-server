@@ -13,7 +13,7 @@
 			"node_modules/@types"
 		],
 		"types": [
-			"graphql-typings"
+			"typed-graphql"
 		]
 	},
 	"files": [
