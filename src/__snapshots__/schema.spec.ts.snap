@@ -5,19 +5,19 @@ Object {
   "someType": Object {
     "fixedString": "fixed.",
     "testFloat": 303.0303,
-    "testInt": 666
-  }
+    "testInt": 666,
+  },
 }
 `;
 
 exports[`Schema should resolve testString correctly 1`] = `
 Object {
-  "testString": "it Works!"
+  "testString": "it Works!",
 }
 `;
 
 exports[`Schema should resolve testStringConnector correctly 1`] = `
 Object {
-  "testStringConnector": "it works from connector as well!"
+  "testStringConnector": "it works from connector as well!",
 }
 `;
