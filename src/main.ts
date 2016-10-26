@@ -1,6 +1,6 @@
 import * as express from "express";
 import * as bodyParser from "body-parser";
-import { apolloExpress, graphiqlExpress } from "apollo-server";
+import { graphqlExpress, graphiqlExpress } from "graphql-server-express";
 import { Schema } from "./schema";
 import * as cors from "cors";
 import * as helmet from "helmet";
@@ -34,7 +34,7 @@ export function main(options: IMainOptions) {
         app.use(GRAPHQL_ROUTE, cors());
     }
 
-    app.use(GRAPHQL_ROUTE, bodyParser.json(), apolloExpress({
+    app.use(GRAPHQL_ROUTE, bodyParser.json(), graphqlExpress({
         context: {},
         schema: Schema,
     }));

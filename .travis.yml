@@ -6,6 +6,7 @@ node_js:
   - "6.5"
 install:
   - npm config set spin=false
+  - npm install -g npm@3
   - npm install -g coveralls
   - npm install
 
