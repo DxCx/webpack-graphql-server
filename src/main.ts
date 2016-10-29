@@ -43,6 +43,9 @@ export function main(options: IMainOptions) {
     if ( true === options.enableGraphiql ) {
         app.use(GRAPHIQL_ROUTE, graphiqlExpress({
             endpointURL: `ws://localhost:${options.port}${GRAPHQL_ROUTE}`,
+            query: `subscription {
+  clock
+}`,
         }));
     }
 
