@@ -44,10 +44,11 @@
     "@types/morgan": "^1.7.30",
     "apollo-server-rxjs": "^0.3.2-patch.2",
     "express": "^4.14.0",
-    "graphql-rxjs": "^0.7.0-patch.2",
+    "graphql-rxjs": "^0.7.2",
     "graphql-tools-rxjs": "^0.7.2",
     "helmet": "^2.1.2",
     "morgan": "^1.7.0",
+    "rxjs": "^5.0.0-rc.1",
     "rxjs-diff-operator": "^0.1.0",
     "ws": "^1.1.1"
   },
