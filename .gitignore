@@ -7,3 +7,4 @@ dist/
 *.tgz
 *.yaml
 yarn.lock
+.idea/
