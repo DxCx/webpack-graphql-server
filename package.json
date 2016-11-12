@@ -42,9 +42,9 @@
     "@types/helmet": "0.0.30",
     "@types/koa": "^2.0.31",
     "@types/morgan": "^1.7.30",
-    "apollo-server-rxjs": "^0.3.2-patch.2",
+    "apollo-server-rxjs": "^0.3.2-patch.3",
     "express": "^4.14.0",
-    "graphql-rxjs": "^0.7.2",
+    "graphql-rxjs": "^0.8.1",
     "graphql-tools-rxjs": "^0.7.2",
     "helmet": "^2.1.2",
     "morgan": "^1.7.0",
@@ -53,7 +53,9 @@
     "ws": "^1.1.1"
   },
   "devDependencies": {
+    "@types/chai": "^3.4.34",
     "@types/jest": "^0.9.30",
+    "@types/koa-bodyparser": "^3.0.20",
     "@types/node": "^6.0.38",
     "@types/ws": "0.0.33",
     "awesome-typescript-loader": "^2.2.1",
