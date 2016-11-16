@@ -1,3 +1,5 @@
+let findPerson = require('./person-type').findPerson;
+
 export const typeDef = `
 # Root Query
 type Query {
@@ -6,13 +8,17 @@ type Query {
     rootMockedString: String
     mockedObject: MockedType
     someType: SomeType
+    getPerson(id: Int): PersonType
 }
 `;
 
 export const resolver = {
     Query: {
+        getPerson(root, args, ctx) {
+            return findPerson(args.id);
+        },
         testString() {
-            return "it Works!";
+            return "it Works! ";
         },
         testStringConnector(root, args, ctx) {
             return ctx.connectors.testConnector.testString;

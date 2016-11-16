@@ -8,6 +8,7 @@ const modules = [
     require("./modules/mocked-type"),
     require("./modules/query"),
     require("./modules/some-type"),
+    require("./modules/person-type"),
 ];
 
 const mainDefs = [`

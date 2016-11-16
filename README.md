@@ -22,13 +22,15 @@ Please note that you will need to rename the library name in some files:
 
 Useful commands:
 ----
-    npm run prebuild   - install NPM dependancies
-    npm run build      - build the library files
-    npm start          - Start the server
-    npm test           - run tests once
-    npm run test:watch - run tests in watchmode (Useful for development)
-    npm run test:growl - run tests in watchmode with growl notification (even more useful for development)
-    npm run upver      - runs standard-version to update the server version.
+    npm run prebuild    - install NPM dependancies
+    npm run build       - build the library files in watchmode (Useful for development). Required for start:watch
+    npm run build:watch - build the library files
+    npm start           - Start the server
+    npm start:watch     - Start the server in watchmode (Useful for development)
+    npm test            - run tests once
+    npm run test:watch  - run tests in watchmode (Useful for development)
+    npm run test:growl  - run tests in watchmode with growl notification (even more useful for development)
+    npm run upver       - runs standard-version to update the server version.
 
 How to run it:
 ----
@@ -60,3 +62,37 @@ Output files explained:
     1. node_modules - directory npm creates with all the dependencies of the module (result of npm install)
     2. dist         - directory contains the compiled server (javascript)
     3. html-report  - output of npm test, code coverage html report.
+
+The Person type - dynamic/parametrized query and drill down:
+----
+The person type was added to demonstrate a database like access, parametrized queries, resolvers and drill down.
+The data is currently hard coded but simulates a storage. Each person has an id, name and sex. It also has a dynamic
+field called matches. For demonstration purposes, this field will retrieve all members of the other sex by using a
+resolver.
+
+Since this is a computed field the query can be infinitely nested, for example, try in the graphiql editor this query:
+
+`{
+   getPerson(id: 1) {
+     id,
+     name
+     sex
+     matches {
+       id
+       name
+       sex
+       matches {
+         id
+         name
+         sex
+         matches {
+           id
+           name
+           sex
+         }
+       }
+     }
+   }
+ }`
+
+It will return a nested, alternating male/femal results.
