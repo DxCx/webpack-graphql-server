@@ -72,27 +72,27 @@ resolver.
 
 Since this is a computed field the query can be infinitely nested, for example, try in the graphiql editor this query:
 
-`{
-   getPerson(id: 1) {
-     id,
-     name
-     sex
-     matches {
-       id
-       name
-       sex
-       matches {
-         id
+    {
+       getPerson(id: 1) {
+         id,
          name
          sex
          matches {
            id
            name
            sex
+           matches {
+             id
+             name
+             sex
+             matches {
+               id
+               name
+               sex
+             }
+           }
          }
        }
      }
-   }
- }`
 
 It will return a nested, alternating male/femal results.
