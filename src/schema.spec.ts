@@ -68,7 +68,12 @@ describe("Schema", () => {
         }`;
 
         return graphql(Schema, testQuery, undefined, {}).then((res) => {
-            let data = res.data;
+            let data = res.data as {
+              mockedObject: {
+                mockedInt: number
+                mockedFirstName: string
+              }
+            };
 
             assertNoError(res);
             expect(data.mockedObject.mockedInt).toBeGreaterThan(-1000);

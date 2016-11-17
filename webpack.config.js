@@ -10,7 +10,7 @@ var distPath = function(name) {
 	}
 
 	return path.join('dist', name);
-}
+};
 
 var webpack_opts = {
 	entry: './src/main.ts',
@@ -41,10 +41,14 @@ var webpack_opts = {
 			}
 		})
 	],
+  devtool: 'source-map',
 	module: {
-		loaders: [{ test: /\.ts$/, loaders: ['babel-loader', 'awesome-typescript-loader'] }]
+		loaders: [{
+      test: /\.ts$/,
+      loaders: 'awesome-typescript-loader'
+		}]
 	},
-	externals: [nodeExternals()]
-}
+  externals: [nodeExternals()]
+};
 
 module.exports = webpack_opts;
