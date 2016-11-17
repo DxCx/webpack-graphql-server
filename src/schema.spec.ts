@@ -52,8 +52,9 @@ describe("Schema", () => {
         let testQuery = `{
             testStringConnector
         }`;
-
-        return graphql(Schema, testQuery, undefined, {}).then((res) => {
+  
+        const ctx = {testConnector: {testString: 'it works from connector as well!'}};
+        return graphql(Schema, testQuery, undefined, ctx).then((res) => {
             assertNoError(res);
             expect(res.data).toMatchSnapshot();
         });

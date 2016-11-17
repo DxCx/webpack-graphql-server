@@ -15,7 +15,6 @@ export const resolver = {
             return "it Works!";
         },
         testStringConnector(root, args, ctx) {
-          console.log(arguments);
           return ctx.testConnector.testString;
         },
         someType(root, args, ctx) {
