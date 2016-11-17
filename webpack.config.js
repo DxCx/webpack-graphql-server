@@ -41,11 +41,11 @@ var webpack_opts = {
 			}
 		})
 	],
-  devtool: 'source-map',
+	devtool: 'source-map',
 	module: {
 		loaders: [{
-      test: /\.ts$/,
-      loaders: 'awesome-typescript-loader'
+			test: /\.ts$/,
+      			loaders: 'awesome-typescript-loader'
 		}]
 	},
   externals: [nodeExternals()]
