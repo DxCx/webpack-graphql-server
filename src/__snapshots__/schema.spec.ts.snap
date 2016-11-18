@@ -1,10 +1,10 @@
 exports[`Schema should find a person and drill down matches (2 levels) correctly 1`] = `
 Object {
   "getPerson": Object {
-    "id": 3,
+    "id": "3",
     "matches": Array [
       Object {
-        "id": 2,
+        "id": "2",
         "matches": Array [
           Object {
             "name": "miro",
@@ -23,7 +23,7 @@ Object {
 exports[`Schema should find a person correctly 1`] = `
 Object {
   "getPerson": Object {
-    "id": 3,
+    "id": "3",
     "name": "joe",
   },
 }

@@ -81,7 +81,7 @@ describe("Schema", () => {
 
     it("should find a person correctly", () => {
         let testQuery = `{
-             getPerson(id: 3){
+             getPerson(id: "3"){
                 name
                 id
             }
@@ -95,7 +95,7 @@ describe("Schema", () => {
 
     it("should find a person and drill down matches (2 levels) correctly", () => {
         let testQuery = `{
-             getPerson(id: 3){
+             getPerson(id: "3"){
                 name
                 id
                 matches {
@@ -112,4 +112,28 @@ describe("Schema", () => {
             expect(res.data).toMatchSnapshot();
         });
     });
+
+    it("should add a person and retrieve it correctly", () => {
+        let testQuery = `mutation {
+            addPerson(name:"kuku", sex: "male") {
+                id
+            }
+        }`;
+
+        return graphql(Schema, testQuery, undefined, {persons}).then((res) => {
+            assertNoError(res);
+            let newId = res.data.addPerson.id
+            let testVerifyQuery = `{
+                getPerson(id: "${newId}"){
+                        id
+                        name
+                    }
+                }`;
+            return graphql(Schema, testVerifyQuery, undefined, {persons}).then((res) => {
+                expect(res.data.getPerson.id).toEqual(newId);
+                expect(res.data.getPerson.name).toEqual("kuku");
+            });
+        });
+    });
+
 });

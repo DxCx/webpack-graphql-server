@@ -1,7 +1,7 @@
 export const typeDef = `
 type PersonType {
     name: String
-    id: Int
+    id: String
     sex: String
     matches: [PersonType]
 }
