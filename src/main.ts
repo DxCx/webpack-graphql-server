@@ -5,6 +5,7 @@ import { Schema } from "./schema";
 import * as cors from "cors";
 import * as helmet from "helmet";
 import * as morgan from "morgan";
+import { persons } from "./schema/data-base/person-database";
 
 // Default port or given one.
 export const GRAPHQL_ROUTE = "/graphql";
@@ -35,7 +36,9 @@ export function main(options: IMainOptions) {
     }
 
     app.use(GRAPHQL_ROUTE, bodyParser.json(), graphqlExpress({
-        context: {},
+        context: {
+            persons
+        },
         schema: Schema,
     }));
     if ( true === options.enableGraphiql ) {

@@ -1,4 +1,4 @@
-let findPerson = require('./person-type').findPerson;
+import { findPerson } from "../data-base/person-database";
 
 export const typeDef = `
 # Root Query
@@ -15,7 +15,7 @@ type Query {
 export const resolver = {
     Query: {
         getPerson(root, args, ctx) {
-            return findPerson(args.id);
+            return findPerson(ctx.persons, args.id);
         },
         testString() {
             return "it Works!";
