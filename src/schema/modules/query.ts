@@ -15,7 +15,7 @@ export const resolver = {
             return "it Works!";
         },
         testStringConnector(root, args, ctx) {
-            return ctx.connectors.testConnector.testString;
+          return ctx.testConnector.testString;
         },
         someType(root, args, ctx) {
             return { testFloat: 303.0303, testInt: 666 };
