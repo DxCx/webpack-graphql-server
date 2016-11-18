@@ -7,9 +7,9 @@ type SomeType {
 `;
 
 export const resolver = {
-    SomeType: {
-        fixedString() {
-            return "fixed.";
-        },
+  SomeType: {
+    fixedString() {
+      return "fixed.";
     },
+  },
 };
