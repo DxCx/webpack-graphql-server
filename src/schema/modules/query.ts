@@ -18,7 +18,7 @@ export const resolver = {
             return findPerson(args.id);
         },
         testString() {
-            return "it Works! ";
+            return "it Works!";
         },
         testStringConnector(root, args, ctx) {
             return ctx.connectors.testConnector.testString;
