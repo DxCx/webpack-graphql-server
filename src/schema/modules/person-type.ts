@@ -9,8 +9,8 @@ type PersonType {
 
 export const resolver = {
     PersonType: {
-        matches(root, args, context) {
-            return context.persons.filter(person => person.sex !== root.sex);
+        matches(root, args, ctx) {
+            return ctx.persons.filter(person => person.sex !== root.sex);
         }
     },
 };

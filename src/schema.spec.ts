@@ -1,7 +1,7 @@
 import { Schema } from "./schema";
 import { graphql } from "graphql";
 import 'jest';
-import { persons } from "./schema/data-base/person-database";
+import { persons, findPerson, addPerson } from "./data-base/person-database";
 
 function assertNoError(res) {
     if ( res.errors ) {
@@ -87,7 +87,7 @@ describe("Schema", () => {
             }
         }`;
 
-        return graphql(Schema, testQuery, undefined, {persons}).then((res) => {
+        return graphql(Schema, testQuery, undefined, {persons, findPerson, addPerson}).then((res) => {
             assertNoError(res);
             expect(res.data).toMatchSnapshot();
         });
@@ -107,7 +107,7 @@ describe("Schema", () => {
             }
         }`;
 
-        return graphql(Schema, testQuery, undefined, {persons}).then((res) => {
+        return graphql(Schema, testQuery, undefined, {persons, findPerson, addPerson}).then((res) => {
             assertNoError(res);
             expect(res.data).toMatchSnapshot();
         });
@@ -120,16 +120,16 @@ describe("Schema", () => {
             }
         }`;
 
-        return graphql(Schema, testQuery, undefined, {persons}).then((res) => {
+        return graphql(Schema, testQuery, undefined, {persons, findPerson, addPerson}).then((res) => {
             assertNoError(res);
-            let newId = res.data.addPerson.id
+            let newId = res.data.addPerson.id;
             let testVerifyQuery = `{
                 getPerson(id: "${newId}"){
                         id
                         name
                     }
                 }`;
-            return graphql(Schema, testVerifyQuery, undefined, {persons}).then((res) => {
+            return graphql(Schema, testVerifyQuery, undefined, {persons, findPerson, addPerson}).then((res) => {
                 expect(res.data.getPerson.id).toEqual(newId);
                 expect(res.data.getPerson.name).toEqual("kuku");
             });

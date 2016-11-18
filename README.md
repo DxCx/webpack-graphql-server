@@ -96,3 +96,24 @@ Since this is a computed field the query can be infinitely nested, for example, 
      }
 
 It will return a nested, alternating male/femal results.
+
+To list all persons, use the `persons` query:
+
+    {
+      persons {
+        id
+        name
+      }
+    }
+
+There is also an example of a mutation - `addPerson(name: String, sex: String)`, to use it:
+
+    mutation {
+        addPerson(name: "kuku", sex: "male"){
+            id
+            name
+        }
+    }
+
+Note that the query generates a random id and that the added persons are transient,
+i.e. not persisted and will be gone once you shut down the server.

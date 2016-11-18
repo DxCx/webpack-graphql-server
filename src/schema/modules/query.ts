@@ -1,5 +1,3 @@
-import { findPerson } from "../data-base/person-database";
-
 export const typeDef = `
 # Root Query
 type Query {
@@ -16,7 +14,7 @@ type Query {
 export const resolver = {
     Query: {
         getPerson(root, args, ctx) {
-            return findPerson(ctx.persons, args.id);
+            return ctx.findPerson(ctx.persons, args.id);
         },
         persons(root, args, ctx) {
             return ctx.persons;
