@@ -1,6 +1,7 @@
 import { Schema } from "./schema";
 import { graphql } from "graphql";
 import 'jest';
+import { persons } from "./schema/data-base/person-database";
 
 function assertNoError(res) {
     if ( res.errors ) {
@@ -75,6 +76,40 @@ describe("Schema", () => {
             expect(data.mockedObject.mockedInt).toBeLessThan(1000);
 
             expect(data.mockedObject.mockedFirstName).toMatchSnapshot();
+        });
+    });
+
+    it("should find a person correctly", () => {
+        let testQuery = `{
+             getPerson(id: 3){
+                name
+                id
+            }
+        }`;
+
+        return graphql(Schema, testQuery, undefined, {persons}).then((res) => {
+            assertNoError(res);
+            expect(res.data).toMatchSnapshot();
+        });
+    });
+
+    it("should find a person and drill down matches (2 levels) correctly", () => {
+        let testQuery = `{
+             getPerson(id: 3){
+                name
+                id
+                matches {
+                    id
+                    matches {
+                        name
+                    }
+                }
+            }
+        }`;
+
+        return graphql(Schema, testQuery, undefined, {persons}).then((res) => {
+            assertNoError(res);
+            expect(res.data).toMatchSnapshot();
         });
     });
 });
