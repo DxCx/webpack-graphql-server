@@ -20,16 +20,6 @@ const mainDefs = [`
 `,
 ];
 
-class TestConnector {
-    constructor (private ctx: any) {
-
-    }
-
-    public get testString() {
-        return "it works from connector as well!";
-    }
-}
-
 const resolvers = Object.assign({},
     ...(modules.map((m) => m.resolver).filter((res) => !!res)), {
 });
@@ -37,9 +27,6 @@ const resolvers = Object.assign({},
 const typeDefs = mainDefs.concat(modules.map((m) => m.typeDef).filter((res) => !!res));
 
 const Schema: GraphQLSchema = makeExecutableSchema({
-    connectors: {
-        testConnector: TestConnector,
-    },
     logger: console,
     resolverValidationOptions: {
         requireResolversForNonScalar: false,

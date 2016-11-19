@@ -27,6 +27,12 @@ function verbosePrint(port, enableGraphiql) {
     }
 }
 
+class TestConnector {
+  public get testString() {
+    return "it works from connector as well!";
+  }
+}
+
 export function main(options: IMainOptions) {
     let app = express();
     app.use(helmet());
@@ -34,15 +40,18 @@ export function main(options: IMainOptions) {
     if ( true === options.enableCors ) {
         app.use(GRAPHQL_ROUTE, cors());
     }
-
+  
+    let testConnector = new TestConnector();
     app.use(GRAPHQL_ROUTE, bodyParser.json(), graphqlExpress({
         context: {
+            testConnector,
             persons,
             findPerson,
             addPerson
         },
         schema: Schema,
     }));
+  
     if ( true === options.enableGraphiql ) {
         app.use(GRAPHIQL_ROUTE, graphiqlExpress({
             endpointURL: GRAPHQL_ROUTE,
