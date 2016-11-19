@@ -1,5 +1,3 @@
-import { addPerson } from "../../data-base/person-database";
-
 export const typeDef = `
 # Mutations
 type Mutation {
@@ -8,9 +6,9 @@ type Mutation {
 `;
 
 export const resolver = {
-    Mutation: {
-        addPerson(root, args, ctx) {
-            return ctx.addPerson(ctx.persons, {id:  Math.random().toString(16).substr(2), name: args.name, sex: args.sex});
-        },
+  Mutation: {
+    addPerson(root, args, ctx) {
+      return ctx.addPerson(ctx.persons, {id: Math.random().toString(16).substr(2), name: args.name, sex: args.sex});
     },
+  },
 };
