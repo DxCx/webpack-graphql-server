@@ -8,9 +8,9 @@ type PersonType {
 `;
 
 export const resolver = {
-    PersonType: {
-        matches(root, args, ctx) {
-            return ctx.persons.filter(person => person.sex !== root.sex);
-        }
-    },
+  PersonType: {
+    matches(root, args, ctx) {
+      return ctx.persons.filter(person => person.sex !== root.sex);
+    }
+  },
 };
