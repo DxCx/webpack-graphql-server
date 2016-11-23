@@ -23,8 +23,8 @@ Please note that you will need to rename the library name in some files:
 Useful commands:
 ----
     npm run prebuild    - install NPM dependancies
-    npm run build       - build the library files in watchmode (Useful for development). Required for start:watch
-    npm run build:watch - build the library files
+    npm run build       - build the library files (Required for start:watch)
+    npm run build:watch - build the library files in watchmode (Useful for development)
     npm start           - Start the server
     npm start:watch     - Start the server in watchmode (Useful for development)
     npm test            - run tests once
@@ -73,7 +73,7 @@ resolver.
 Since this is a computed field the query can be infinitely nested, for example, try in the graphiql editor this query:
 
     {
-       getPerson(id: 1) {
+       getPerson(id: "1") {
          id,
          name
          sex
