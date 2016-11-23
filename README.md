@@ -73,7 +73,7 @@ resolver.
 Since this is a computed field the query can be infinitely nested, for example, try in the graphiql editor this query:
 
     {
-       getPerson(id: 1) {
+       getPerson(id: "1") {
          id,
          name
          sex
