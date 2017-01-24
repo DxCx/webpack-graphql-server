@@ -46,7 +46,7 @@
     "body-parser": "^1.15.2",
     "cors": "^2.8.1",
     "express": "^4.14.0",
-    "graphql": "0.8.2",
+    "graphql": "0.9.0",
     "graphql-server-express": "^0.5.0",
     "graphql-subscriptions": "^0.2.2",
     "graphql-tools": "0.9.0",
