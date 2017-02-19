@@ -117,3 +117,7 @@ There is also an example of a mutation - `addPerson(name: String, sex: String)`,
 
 Note that the query generates a random id and that the added persons are transient,
 i.e. not persisted and will be gone once you shut down the server.
+
+Sample clients for this server:
+----
+* [ionic2](https://github.com/philipbrack/ionic2-apollo-simple)
