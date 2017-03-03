@@ -67,7 +67,7 @@
     "ts-jest": "^18.0.1",
     "tslint": "^4.3.1",
     "tslint-loader": "^3.3.0",
-    "typescript": "2.1.6",
+    "typescript": "2.2.1",
     "webpack": "^2.1.0-beta.21",
     "webpack-node-externals": "^1.5.4"
   },
