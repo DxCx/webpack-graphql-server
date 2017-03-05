@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`Schema should find a person and drill down matches (2 levels) correctly 1`] = `
 Object {
   "getPerson": Object {
