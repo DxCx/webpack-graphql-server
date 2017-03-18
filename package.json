@@ -4,7 +4,6 @@
   "description": "Starter kit for apollo server using webpack and typescript",
   "main": "dist/main.js",
   "scripts": {
-    "prebuild" : "npm install",
     "build": "webpack",
     "build:watch": "webpack --watch",
     "pretest": "npm run build",
