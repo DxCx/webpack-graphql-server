@@ -1,6 +1,6 @@
-# webpack-apollo-server
+# webpack-graphql-server
 
-[![npm version](https://badge.fury.io/js/webpack-apollo-server.svg)](https://badge.fury.io/js/webpack-apollo-server) [![Build Status](https://travis-ci.org/DxCx/webpack-apollo-server.svg?branch=master)](https://travis-ci.org/DxCx/webpack-apollo-server) [![Coverage Status](https://coveralls.io/repos/github/DxCx/webpack-apollo-server/badge.svg?branch=master)](https://coveralls.io/github/DxCx/webpack-apollo-server?branch=master)
+[![npm version](https://badge.fury.io/js/webpack-graphql-server.svg)](https://badge.fury.io/js/webpack-graphql-server) [![Build Status](https://travis-ci.org/DxCx/webpack-graphql-server.svg?branch=master)](https://travis-ci.org/DxCx/webpack-graphql-server) [![Coverage Status](https://coveralls.io/repos/github/DxCx/webpack-graphql-server/badge.svg?branch=master)](https://coveralls.io/github/DxCx/webpack-graphql-server?branch=master)
 
 Starter kit for apollo server using webpack and typescript
 
@@ -9,7 +9,7 @@ What does it include:
     1. exported schema as example for GraphQL Schema
     2. Working Apollo Server (webpack + tslint + tsloader)
     3. Typescript 2.0.0 => ES6
-    4. Dockerfile to make the apollo-server a container.
+    4. Dockerfile to make the graphql-server a container.
     5. unit testing (mocha-webpack+chai) + coverage report (mocha-istanbul-spec+istanbul).
     6. working with graphql-tools
     7. standard-version for auto SemVer.
