@@ -18,8 +18,16 @@ const mainDefs = [`
 `,
 ];
 
-const resolvers = Object.assign({},
-  ...(modules.map((m) => m.resolver).filter((res) => !!res)));
+const resolvers = modules.reduce((state, m) => {
+  if ( !m.resolver ) {
+    return state;
+  }
+
+  return {
+    ...state,
+    ...m.resolver,
+  };
+}, {});
 
 const typeDefs = mainDefs.concat(modules.map((m) => m.typeDef).filter((res) => !!res));
 
