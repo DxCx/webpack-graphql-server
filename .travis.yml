@@ -21,7 +21,7 @@ script:
   - npm run coverage
 
 after_script:
-  - coveralls < ./lcov.info || true # if coveralls doesn't have it covered
+  - coveralls < ./coverage/lcov.info || true # if coveralls doesn't have it covered
 
 branches:
     only:
