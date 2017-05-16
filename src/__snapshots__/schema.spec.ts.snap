@@ -31,6 +31,25 @@ Object {
 }
 `;
 
+exports[`Schema should list all persons 1`] = `
+Object {
+  "persons": Array [
+    Object {
+      "name": "miro",
+      "sex": "male",
+    },
+    Object {
+      "name": "lala",
+      "sex": "female",
+    },
+    Object {
+      "name": "joe",
+      "sex": "male",
+    },
+  ],
+}
+`;
+
 exports[`Schema should resolve mockedObject  correctly 1`] = `"Hello World"`;
 
 exports[`Schema should resolve someType correctly 1`] = `
