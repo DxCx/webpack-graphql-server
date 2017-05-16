@@ -7,7 +7,6 @@ node_js:
 cache:
   directories:
     - ${HOME}/.npm
-    - node_modules
 
 before_install:
   - npm config set spin=false
@@ -16,14 +15,17 @@ before_install:
 
 install:
   - npm install
-  - npm prune
 
 script:
   - npm test
   - npm run coverage
 
 after_script:
-  - coveralls < ./lcov.info || true # if coveralls doesn't have it covered
+  - coveralls < ./coverage/lcov.info || true # if coveralls doesn't have it covered
+
+branches:
+    only:
+      - master
 
 # Allow Travis tests to run in containers.
 sudo: false

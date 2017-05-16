@@ -14,26 +14,26 @@ describe("Schema", () => {
   it("should export valid schema", () => {
     let query = Schema.getQueryType();
     expect(typeof query).toBe("object");
-    
+
     let fields: any = query.getFields();
     expect(typeof fields).toBe("object");
   });
-  
+
   it("should resolve testString correctly", () => {
     let testQuery = `{
             testString
         }`;
-    
+
     let expectedResponse = {
       testString: "it Works!",
     };
-    
+
     return graphql(Schema, testQuery, undefined, {}).then((res) => {
       assertNoError(res);
       expect(res.data).toMatchSnapshot();
     });
   });
-  
+
   it("should resolve someType correctly", () => {
     let testQuery = `{
             someType {
@@ -42,25 +42,25 @@ describe("Schema", () => {
                 fixedString,
             }
         }`;
-    
+
     return graphql(Schema, testQuery, undefined, {}).then((res) => {
       assertNoError(res);
       expect(res.data).toMatchSnapshot();
     });
   });
-  
+
   it("should resolve testStringConnector correctly", () => {
     let testQuery = `{
             testStringConnector
         }`;
-    
+
     const ctx = {testConnector: {testString: 'it works from connector as well!'}};
     return graphql(Schema, testQuery, undefined, ctx).then((res) => {
       assertNoError(res);
       expect(res.data).toMatchSnapshot();
     });
   });
-  
+
   it("should resolve mockedObject  correctly", () => {
     let testQuery = `{
             mockedObject {
@@ -68,7 +68,7 @@ describe("Schema", () => {
                 mockedInt,
             }
         }`;
-  
+
     return graphql(Schema, testQuery, undefined, {}).then((res) => {
       let data = res.data as {
         mockedObject: {
@@ -76,15 +76,29 @@ describe("Schema", () => {
           mockedFirstName: string
         }
       };
-    
+
       assertNoError(res);
       expect(data.mockedObject.mockedInt).toBeGreaterThan(-1000);
       expect(data.mockedObject.mockedInt).toBeLessThan(1000);
-    
+
       expect(data.mockedObject.mockedFirstName).toMatchSnapshot();
     });
   });
-  
+
+  it("should list all persons", () => {
+    let testQuery = `{
+             persons {
+                name
+                sex
+            }
+        }`;
+
+    return graphql(Schema, testQuery, undefined, {persons}).then((res) => {
+      assertNoError(res);
+      expect(res.data).toMatchSnapshot();
+    });
+  });
+
   it("should find a person correctly", () => {
     let testQuery = `{
              getPerson(id: "3"){
@@ -92,13 +106,13 @@ describe("Schema", () => {
                 id
             }
         }`;
-    
+
     return graphql(Schema, testQuery, undefined, {persons, findPerson, addPerson}).then((res) => {
       assertNoError(res);
       expect(res.data).toMatchSnapshot();
     });
   });
-  
+
   it("should find a person and drill down matches (2 levels) correctly", () => {
     let testQuery = `{
              getPerson(id: "3"){
@@ -112,20 +126,20 @@ describe("Schema", () => {
                 }
             }
         }`;
-    
+
     return graphql(Schema, testQuery, undefined, {persons, findPerson, addPerson}).then((res) => {
       assertNoError(res);
       expect(res.data).toMatchSnapshot();
     });
   });
-  
+
   it("should add a person and retrieve it correctly", () => {
     let testQuery = `mutation {
             addPerson(name:"kuku", sex: "male") {
                 id
             }
         }`;
-    
+
     return graphql(Schema, testQuery, undefined, {persons, findPerson, addPerson}).then((res) => {
       assertNoError(res);
       let newId = res.data.addPerson.id;
@@ -141,5 +155,5 @@ describe("Schema", () => {
       });
     });
   });
-  
+
 });
