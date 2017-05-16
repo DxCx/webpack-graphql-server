@@ -23,5 +23,9 @@ script:
 after_script:
   - coveralls < ./lcov.info || true # if coveralls doesn't have it covered
 
+branches:
+    only:
+      - master
+
 # Allow Travis tests to run in containers.
 sudo: false
