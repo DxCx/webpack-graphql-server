@@ -46,7 +46,7 @@
     "body-parser": "^1.17.1",
     "cors": "^2.8.3",
     "express": "^4.15.2",
-    "graphql": "0.9.6",
+    "graphql": "0.10.0",
     "graphql-server-express": "^0.7.2",
     "graphql-tools": "0.11.0",
     "helmet": "^3.6.0",
