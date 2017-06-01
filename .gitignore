@@ -6,5 +6,4 @@ dist/
 *.log
 *.tgz
 *.yaml
-yarn.lock
 .idea/
