@@ -48,7 +48,7 @@
     "express": "^4.15.3",
     "graphql": "0.10.1",
     "graphql-server-express": "^0.8.0",
-    "graphql-tools": "1.0.0",
+    "graphql-tools": "1.1.0",
     "helmet": "^3.6.1",
     "morgan": "^1.8.2"
   },
