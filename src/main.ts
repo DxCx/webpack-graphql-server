@@ -75,7 +75,7 @@ export function main(options: IMainOptions) {
 
 /* istanbul ignore if: main scope */
 if (require.main === module) {
-  const PORT = process.env.PORT || 3000;
+  const PORT = parseInt(process.env.PORT || '3000', 10);
 
   // Either to export GraphiQL (Debug Interface) or not.
   const NODE_ENV = process.env.NODE_ENV !== "production" ? "dev" : "production";
