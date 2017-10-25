@@ -8,9 +8,9 @@ What does it include:
 ----
     1. exported schema as example for GraphQL Schema
     2. Working Apollo Server (webpack + tslint + tsloader)
-    3. Typescript 2.0.0 => ES6
+    3. Typescript 2.4.2 => ES6
     4. Dockerfile to make the graphql-server a container.
-    5. unit testing (mocha-webpack+chai) + coverage report (mocha-istanbul-spec+istanbul).
+    5. unit testing (jest) + coverage report (jest --coverage).
     6. working with graphql-tools
     7. standard-version for auto SemVer.
 
