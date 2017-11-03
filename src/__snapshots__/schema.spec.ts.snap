@@ -50,8 +50,6 @@ Object {
 }
 `;
 
-exports[`Schema should resolve mockedObject  correctly 1`] = `"Hello World"`;
-
 exports[`Schema should resolve someType correctly 1`] = `
 Object {
   "someType": Object {

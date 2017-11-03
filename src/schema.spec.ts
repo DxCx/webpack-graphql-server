@@ -61,30 +61,6 @@ describe("Schema", () => {
     });
   });
 
-  it("should resolve mockedObject  correctly", () => {
-    let testQuery = `{
-            mockedObject {
-                mockedFirstName,
-                mockedInt,
-            }
-        }`;
-
-    return graphql(Schema, testQuery, undefined, {}).then((res) => {
-      let data = res.data as {
-        mockedObject: {
-          mockedInt: number
-          mockedFirstName: string
-        }
-      };
-
-      assertNoError(res);
-      expect(data.mockedObject.mockedInt).toBeGreaterThan(-1000);
-      expect(data.mockedObject.mockedInt).toBeLessThan(1000);
-
-      expect(data.mockedObject.mockedFirstName).toMatchSnapshot();
-    });
-  });
-
   it("should list all persons", () => {
     let testQuery = `{
              persons {
