@@ -1,15 +1,13 @@
-import * as express from 'express';
-import * as bodyParser from 'body-parser';
-import {graphqlExpress, graphiqlExpress} from 'apollo-server-express';
+import express from 'express';
+import {ApolloServer} from 'apollo-server-express';
 import {Schema} from './schema';
-import * as cors from 'cors';
-import * as helmet from 'helmet';
-import * as morgan from 'morgan';
+import cors from 'cors';
+import helmet from 'helmet';
+import morgan from 'morgan';
 import {persons, findPerson, addPerson} from './data-base/person-database';
 
 // Default port or given one.
 export const GRAPHQL_ROUTE = "/graphql";
-export const GRAPHIQL_ROUTE = "/graphiql";
 
 interface IMainOptions {
   enableCors: boolean;
@@ -22,9 +20,6 @@ interface IMainOptions {
 /* istanbul ignore next: no need to test verbose print */
 function verbosePrint(port, enableGraphiql) {
   console.log(`GraphQL Server is now running on http://localhost:${port}${GRAPHQL_ROUTE}`);
-  if (true === enableGraphiql) {
-    console.log(`GraphiQL Server is now running on http://localhost:${port}${GRAPHIQL_ROUTE}`);
-  }
 }
 
 export class TestConnector {
@@ -35,7 +30,6 @@ export class TestConnector {
 
 export function main(options: IMainOptions) {
   let app = express();
-
   app.use(helmet());
 
   app.use(morgan(options.env));
@@ -45,19 +39,26 @@ export function main(options: IMainOptions) {
   }
 
   let testConnector = new TestConnector();
-  app.use(GRAPHQL_ROUTE, bodyParser.json(), graphqlExpress({
+  let playgroundConf = {};
+  if (true === options.enableGraphiql) {
+    playgroundConf = {
+      playground: {
+        endpoint: GRAPHQL_ROUTE,
+      }
+    };
+  }
+
+  const server = new ApolloServer({
+    schema: Schema,
     context: {
       testConnector,
       persons,
       findPerson,
       addPerson
     },
-    schema: Schema,
-  }));
-
-  if (true === options.enableGraphiql) {
-    app.use(GRAPHIQL_ROUTE, graphiqlExpress({endpointURL: GRAPHQL_ROUTE}));
-  }
+    ...playgroundConf,
+  });
+  server.applyMiddleware({ app, path: GRAPHQL_ROUTE });
 
   return new Promise((resolve, reject) => {
     let server = app.listen(options.port, () => {

@@ -8,15 +8,17 @@ var distPath = function ( name ) {
   if ( undefined === name ) {
     return path.join('dist');
   }
-  
+
   return path.join('dist', name);
 };
+const NODE_ENV = process.env.NODE_ENV;
 
 var webpack_opts = {
   entry: './src/main.ts',
   target: 'node',
+  mode: NODE_ENV === "production" ? NODE_ENV : "development",
   output: {
-    filename: distPath('main.js'),
+    filename: 'main.js',
     libraryTarget: "commonjs2"
   },
   resolve: {
@@ -43,7 +45,7 @@ var webpack_opts = {
   ],
   devtool: 'source-map',
   module: {
-    loaders: [{
+    rules: [{
       test: /\.ts$/,
       loaders: 'awesome-typescript-loader'
     }]
